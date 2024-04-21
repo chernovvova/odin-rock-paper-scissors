@@ -34,20 +34,14 @@ function playRound(playerSelection, computerSelection) {
     return result;
 }
 
-function playGame() {
-    while(playerScore + computerScore < 5) {
-        let playerSelection = prompt('Your choice?');
-        let roundResult = playRound(playerSelection, getComputerChoice());
-        console.log(playerScore + " : " + computerScore);
-        alert(roundResult);
-    }
 
-    if(playerScore > computerScore) {
-        alert(`You won! Score: ${playerScore} : ${computerScore}`);
-    }
-    else {
-        alert(`You lose! Score: ${playerScore} : ${computerScore}`);
-    }
+const buttons = document.querySelectorAll('button');
+const resultText = document.querySelector('.result-text');
+
+for(const button of buttons) {
+    button.addEventListener('click', function() {
+        let roundResult = playRound(button.textContent.trim(), getComputerChoice());
+        resultText.textContent = roundResult;
+    });
 }
 
-playGame();
